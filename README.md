@@ -25,12 +25,13 @@ itemsテーブル
 | ------                  | ---------- | ------------------------------ |
 | item_name               | string     | null: false,                   |
 | item_info               | text       | null: false                    |
-| item_category_id        | references | null: false,foreign_key: true  |
-| item_condition_id       | references | null: false,foreign_key: true  |
-| item_fee_status_id      | references | null: false,foreign_key: true  |　配送料負担
-| item_prefecture_id      | references | null: false,foreign_key: true  |　　発送元の地域
-| item_scheduled_id       | references | null: false,foreign_key: true  |　発送までの日数 
+| item_category_id        | integer    | null: false,                   |
+| item_condition_id       | integer    | null: false,                   |
+| item_fee_status_id      | integer    | null: false,                   |　配送料負担
+| item_prefecture_id      | integer    | null: false,                   |　　発送元の地域
+| item_scheduled_id       | integer    | null: false,                   |　発送までの日数 
 | item_price              | integer    | null: false,                   |
+| user_id                 | references | null: false,foreign_key: true  |
 ### Association
 
 belongs_to :user
