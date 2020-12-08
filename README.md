@@ -31,7 +31,7 @@ itemsテーブル
 | item_prefecture_id      | integer    | null: false,                   |　　発送元の地域
 | item_scheduled_id       | integer    | null: false,                   |　発送までの日数 
 | item_price              | integer    | null: false,                   |
-| user_id                 | references | null: false,foreign_key: true  |
+| user                    | references | null: false,foreign_key: true  |
 ### Association
 
 belongs_to :user
@@ -62,7 +62,7 @@ addressesテーブル
 | addresses               | string     | null: false,                   |
 | building                | string     | null: true,                   |
 | phone_number            | string     | null: false,                  |
-| purchases_id            | references | null: false,foreign_key: true |
+| purchase                | references | null: false,foreign_key: true |
 
 ### Association
 belongs_to :purchase
