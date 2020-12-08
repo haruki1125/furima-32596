@@ -48,6 +48,7 @@ transactionsテーブル 取引
 ### Association
 has_one : address
 belongs_to : user
+belongs_to :item
 
 
 addressesテーブル
@@ -56,10 +57,10 @@ addressesテーブル
 | Column                  | Type       | Options                        |
 | ------                  | ---------- | ------------------------------ |
 | postal_code_id          | string     | null: true,                   |
-| prefecture              | integer    | null: false,                   |
+| prefecture_id           | integer    | null: false,                   |
 | city                    | string     | null: false,                   |
 | addresses               | string     | null: false,                   |
-| building                | string     | null: false,                   |
+| building                | string     | null: true,                   |
 | phone_number            | string     | null: false,                  |
 | transaction             | references | null: false,foreign_key: true |
 
