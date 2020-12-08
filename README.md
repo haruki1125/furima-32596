@@ -14,8 +14,8 @@ users テーブル
 
 
 ### Association
-has_one :address
 has_many :items
+has_many :transaction
 
 
 
@@ -25,37 +25,18 @@ itemsテーブル
 | ------                  | ---------- | ------------------------------ |
 | item_name               | string     | null: false,                   |
 | item_info               | text       | null: false                    |
-| item_category           | integer    | null: false,                   |
-| item_condition          | integer    | null: false,                   |
-| item_fee_status         | integer    | null: false,                   |　配送料負担
-| item_prefecture         | integer    | null: false                    |　　発送元の地域
-| item_scheduled          | integer    | null: false,                   |　発送までの日数 
+| item_category_id        | integer    | null: false,                   |
+| item_condition_id       | integer    | null: false,                   |
+| item_fee_status_id      | integer    | null: false,                   |　配送料負担
+| item_prefecture_id      | integer    | null: false                    |　　発送元の地域
+| item_scheduled_id       | integer    | null: false,                   |　発送までの日数 
 | item_price              | integer    | null: false,                   |
 
 ### Association
 
 belongs_to :user
-has_one :address
 has_one :transaction
 
-addressesテーブル
-
-
-| Column                  | Type       | Options                        |
-| ------                  | ---------- | ------------------------------ |
-| postal_code             | string     | null: false,                   |
-| prefecture              | integer    | null: false,                   |
-| city                    | string     | null: false,                   |
-| addresses               | string     | null: false,                   |
-| building                | string     | null: false,                   |
-| phone_number            | integer    | unique: true                   |
-| user                    | references | null: false,foreign_key: true  |
-| item                    | references | null: false,foreign_key: true  |
-
-
-### Association
-belongs_to :item
-belongs_to :user
 
 transactionsテーブル 取引
 
@@ -65,7 +46,27 @@ transactionsテーブル 取引
 | item                    | references | null: false,foreign_key: true  |
 
 ### Association
-belongs_to :item
+has_one : address
+belongs_to : user
+
+
+addressesテーブル
+
+
+| Column                  | Type       | Options                        |
+| ------                  | ---------- | ------------------------------ |
+| postal_code_id          | string     | null: true,                   |
+| prefecture              | integer    | null: false,                   |
+| city                    | string     | null: false,                   |
+| addresses               | string     | null: false,                   |
+| building                | string     | null: false,                   |
+| phone_number            | string     | null: false,                  |
+| transaction             | references | null: false,foreign_key: true |
+
+### Association
+belongs_to :transaction
+
+
 
 
 
