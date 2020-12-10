@@ -14,10 +14,10 @@ class User < ApplicationRecord
           validates :first_name_kana, format: {with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,message: '全角カタカナのみで入力して下さい'}
           validates :birthday
         end
-        
+
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   # 半角英数字のみ
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には半角で英字と数字の両方を含めて設定してください'
   # 上の二行でパスワードのバリデーションできる
 end
