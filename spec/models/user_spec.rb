@@ -51,9 +51,21 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'パスワードは、半角英数字混合での入力でなければ登録できない' do # パスワードは、半角英数字混合での入力が必須であること
+      it 'passwordが半角数字のみの場合は登録できない' do # パスワードは、半角英数字混合での入力が必須であること
+        @user.password = '123456'
+        @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password には半角で英字と数字の両方を含めて設定してください')
+      end
+      it 'passwordが半角英字のみの場合は登録できない' do # パスワードは、半角英数字混合での入力が必須であること
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password には半角で英字と数字の両方を含めて設定してください')
+      end
+      it 'passwordが全角では登録できない' do # パスワードは、半角英数字混合での入力が必須であること
+        @user.password = 'tfd１１１'
+        @user.password_confirmation = 'tfd１１１'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password には半角で英字と数字の両方を含めて設定してください')
       end
@@ -110,12 +122,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
-      it 'passwordが全角では登録できない' do 
-        @user.password = 'tfd１１１'
-        @user.password_confirmation = 'tfd１１１'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('Password には半角で英字と数字の両方を含めて設定してください')
-      end
+      
     end
   end
 end
