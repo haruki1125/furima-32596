@@ -70,7 +70,7 @@ describe Item do
         expect(@item.errors.full_messages).to include("Item price は300円から9999999円以内にしてください")
       end
       it "値段が全角数字だと登録不可なこと" do
-        @item.item_price = １１１１
+        @item.item_price = "１１１１"
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price は300円から9999999円以内にしてください")
       end
