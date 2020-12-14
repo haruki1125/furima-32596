@@ -30,30 +30,30 @@ describe Item do
       end
       
       it "カテゴリーが1ならば登録不可なこと" do
-        @item.item_category_id = '1'
+        @item.item_category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item category must be other than 1")
       end
       
       it "商品の状態が1なら登録不可なこと" do
-        @item.item_condition_id = '1'
+        @item.item_condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item condition must be other than 1")
       end
       it "配送料の負担が1なら登録不可なこと" do
-        @item.item_fee_status_id = '1'
+        @item.item_fee_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item fee status must be other than 1")
       end
   
       it "発送元の地域が1なら登録不可なこと" do
-        @item.item_prefecture_id = '1'
+        @item.item_prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item prefecture must be other than 1")
       end
   
       it "発送までの日数が1なら登録不可なこと" do
-        @item.item_scheduled_id = '1'
+        @item.item_scheduled_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item scheduled must be other than 1")
       end
@@ -70,18 +70,18 @@ describe Item do
         expect(@item.errors.full_messages).to include("Item price は300円から9999999円以内にしてください")
       end
       it "値段が全角数字だと登録不可なこと" do
-        @item.item_price = '１１１１'
+        @item.item_price = １１１１
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price は300円から9999999円以内にしてください")
       end
 
       it "値段が300よりも小さければ登録不可なこと" do
-        @item.item_price = '200'
+        @item.item_price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price は300円から9999999円以内にしてください")
       end
       it "値段が10,000,000ならば登録不可なこと" do
-        @item.item_price = '10000000'
+        @item.item_price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price は300円から9999999円以内にしてください")
       end
