@@ -122,7 +122,6 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
-      
     end
   end
 end
