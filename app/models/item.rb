@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :item_scheduled_id
   end
 
-  validates :item_price,   numericality: { only_integer: true , greater_than_or_equal_to: 300 , less_than_or_equal_to: 9999999, message: "は300円から9999999円以内にしてください"}
+  validates :item_price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'は300円から9999999円以内にしてください' }
 
   with_options presence: true do
     validates :image
@@ -29,7 +29,4 @@ class Item < ApplicationRecord
 
   validates :item_info, length: { maximum: 1000 }
   validates :item_name, length: { maximum: 40 }
-
-
 end
-
