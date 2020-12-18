@@ -2,7 +2,10 @@ require 'rails_helper'
 
 describe AddressDonation do
   before do
-    @address = FactoryBot.build(:address_donation)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item, user_id: user.id)#itemのfactorybot作って@addressに入れる
+    @address = FactoryBot.build(:address_donation, user_id: user.id, item_id: item.id)
+    sleep(1)
   end
   describe '購入情報の保存' do
     context '購入情報の保存とトークンがうまくいくとき' do
@@ -59,6 +62,16 @@ describe AddressDonation do
         @address.phone_number = 123456789123
         @address.valid?
         expect(@address.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'user_idが空だと保存できないこと' do
+        @address.user_id = nil
+        @address.valid?
+        expect(@address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空だと保存できないこと' do
+        @address.item_id = nil
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
