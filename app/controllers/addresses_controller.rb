@@ -1,11 +1,15 @@
 class AddressesController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create]
+  before_action :buy_item, only: [:index, :create]
   def index
-    @address = AddressDonation.new
-    @item = Item.find(params[:item_id])
+    unless current_user.id == @item.user_id
+      @address = AddressDonation.new
+    else
+      redirect_to root_path
+    end
   end
   def create
-    @item = Item.find(params[:item_id])
     @address = AddressDonation.new(address_params)
     if @address.valid?
       pay_item
@@ -29,6 +33,16 @@ class AddressesController < ApplicationController
       card: address_params[:token],    # カードトークン ストロングパラメーターにtokenの情報も入れてあげる必要あり
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def buy_item
+    if @item.purchase != nil
+      redirect_to root_path
+    end
   end
 
 end

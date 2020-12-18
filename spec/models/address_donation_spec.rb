@@ -9,6 +9,10 @@ describe AddressDonation do
       it '必要なカラムが存在すれば保存できる' do
         expect(@address).to be_valid
       end
+      it "buildingが空でも登録できる" do
+        @address.building = nil
+        expect(@address).to be_valid
+      end
     end
     context '購入情報の保存がうまくいかない' do
       it "tokenが空では登録できないこと" do

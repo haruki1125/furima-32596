@@ -10,6 +10,8 @@ class AddressDonation
     validates :addresses
     validates :phone_number, format: { with: VALID_PHONE_REGEX }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   
